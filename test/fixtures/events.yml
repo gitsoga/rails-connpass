@@ -1,0 +1,23 @@
+event1:
+  name: イベント1
+  create_user_id: 1
+  start_at: "2022-01-10 19:00:00"
+  end_at: "2022-01-10 20:00:00"
+  deleted: 0
+  content: イベント１です
+
+event2:
+  name: イベント2
+  create_user_id: 2
+  start_at: "2022-03-31 13:00:00"
+  end_at: "2022-03-31 17:00:00"
+  deleted: 0
+  content: イベント２です
+
+event3:
+  name: イベント3
+  create_user_id: 3
+  start_at: "2022-04-01 10:00:00"
+  end_at: "2022-04-01 11:00:00"
+  deleted: 0
+  content: イベント３です

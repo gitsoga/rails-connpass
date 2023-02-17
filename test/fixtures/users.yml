@@ -1,0 +1,14 @@
+user1:
+  name: ユーザー1
+  email: user1@aaa.com
+  deleted: 0
+
+user2:
+  name: ユーザー2
+  email: user2@aaa.com
+  deleted: 0
+
+user3:
+  name: ユーザー3
+  email: user3@aaa.com
+  deleted: 0

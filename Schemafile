@@ -1,0 +1,31 @@
+create_table "users", force: :cascade, charset: "utf8mb4", collation: "utf8mb4_bin", options: "ENGINE=InnoDB", comment: "ユーザー" do |t|
+  t.string "name", null: false, default: "", comment: "名前"
+  t.string "email", null: false, default: "", comment: "Eメール"
+  t.boolean "deleted", null: true, default: false, comment: "退会済フラグ"
+  t.timestamps
+  t.index "email", name: "index_users_on_email"
+end
+
+create_table "events", force: :cascade, charset: "utf8mb4", collation: "utf8mb4_bin", options: "ENGINE=InnoDB", comment: "イベント" do |t|
+  t.string "name", null: false, default: "", comment: "イベント名"
+  t.bigint "create_user_id", null: false, comment: "作成ユーザー"
+  t.datetime "start_at", null: false, comment: "イベント開始日時"
+  t.datetime "end_at", null: false, comment: "イベント終了日時"
+  t.boolean "deleted", null: true, default: false, comment: "削除済フラグ"
+  t.text "content", null:true, comment: "イベント概要"
+  t.timestamps
+  t.index "name", name: "index_events_on_name"
+  t.index "create_user_id", name: "index_events_on_create_user_id"
+end
+add_foreign_key "events", "users", column: "create_user_id"
+
+create_table "join_events", id: false, primary_key: ["user_id", "event_id"], force: :cascade, charset: "utf8mb4", collation: "utf8mb4_bin", options: "ENGINE=InnoDB", comment: "イベント参加ユーザー" do |t|
+  t.bigint "user_id", null: false, comment: "参加ユーザー"
+  t.bigint "event_id", null: false, comment: "イベントID"
+  t.timestamps
+  t.index "user_id", name: "index_join_events_on_user_id"
+  t.index "event_id", name: "index_join_events_on_event_id"
+end
+add_index "join_events", ["user_id", "event_id"], unique: true
+add_foreign_key "join_events", "users"
+add_foreign_key "join_events", "events"
