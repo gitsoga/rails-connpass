@@ -1,4 +1,6 @@
 class User < ApplicationRecord
-    has_many :events
-    has_many :events, through: :join_events
+    has_many :event
+    
+    has_many :join_event
+    has_many :event, through: :join_event
 end
