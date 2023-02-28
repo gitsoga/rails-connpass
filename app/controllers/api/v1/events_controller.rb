@@ -1,5 +1,5 @@
 class Api::V1::EventsController < ApplicationController
-  before_action :set_event, only: %i[show edit update destory]
+  before_action :set_event, only: %i[update destory]
 
   def index
     @event = Event.all
@@ -9,18 +9,20 @@ class Api::V1::EventsController < ApplicationController
     @event = Event.includes([join_event: :user]).find(params[:id])
   end
 
-  def new; end
-
-  def edit; end
-
   def create
     @event = Event.new(event_params)
     if @event.save
+      render json: { status: 'SUCCESS', data: @event }
+    else
+      render json: { status: 'ERROR', data: @event.errors }
     end
   end
 
   def update
     if @event.update(event_params)
+      render json: { status: 'SUCCESS', data: @event }
+    else
+      render json: { status: 'ERROR', data: @event.errors }
     end
   end
 
@@ -32,5 +34,9 @@ class Api::V1::EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :create_user_id, :start_at, :end_at, :content)
   end
 end
