@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApiController < ActionController::Base
   # マッチ度が高いものを下に記載する
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 

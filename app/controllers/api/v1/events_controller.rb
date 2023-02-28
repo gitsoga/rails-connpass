@@ -1,4 +1,4 @@
-class Api::V1::EventsController < ApplicationController
+class Api::V1::EventsController < ApiController
   before_action :set_event, only: %i[update destory]
 
   def index
