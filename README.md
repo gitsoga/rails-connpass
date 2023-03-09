@@ -1,24 +1,46 @@
-# README
+# イベント告知・参加アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
 
-Things you may want to cover:
+イベントアプリ（実際に存在するサイト connpass）で使用することを想定した API 群です。
 
-* Ruby version
+## API Doc
 
-* System dependencies
+## 環境構築
 
-* Configuration
+```
+$ docker-compose up -d
+```
 
-* Database creation
+- http://localhost:3000/ でアクセスできる
 
-* Database initialization
+## DB
 
-* How to run the test suite
+### スキーマ変更
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle exec ridgepole --config config/database.yml --env development --file Schemafile --apply
+```
 
-* Deployment instructions
+### デモデータ投入
 
-* ...
+```
+rails db:fixtures:load
+rails db:fixtures:load FIXTURES=events
+```
+
+## テスト実施方法
+
+## 環境
+
+- Ruby 3.1
+- Rails 7.0.4
+- MySQL 8.0
+
+## 文責
+
+- 作成者：soga.y
+
+## ライセンス
+
+This sample code is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
